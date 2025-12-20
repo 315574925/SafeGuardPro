@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>老人档案页面</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#46ec13",
+                        "primary-dark": "#36b80f",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#152211",
+                        "surface-dark": "#1f331b",
+                        "surface-hover": "#2c4823",
+                        "text-secondary": "#9fc992",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #152211; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2c4823; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #46ec13; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#2c4823] px-10 py-3 bg-[#152211] z-20 shrink-0">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-[32px]">security</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">平安守护平台</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-text-secondary hover:text-white text-sm font-medium leading-normal transition-colors" href="../平安守护平台首页_2/code.html">首页</a>
+<a class="text-primary text-sm font-bold leading-normal relative after:content-[''] after:absolute after:-bottom-[22px] after:left-0 after:w-full after:h-[2px] after:bg-primary" href="#">老人档案</a>
+<a class="text-text-secondary hover:text-white text-sm font-medium leading-normal transition-colors" href="../健康监测页面/code.html">健康监测</a>
+<a class="text-text-secondary hover:text-white text-sm font-medium leading-normal transition-colors" href="../系统设置页面/code.html">系统设置</a>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-[#2c4823]" data-alt="Admin user profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBLqkKrmQG0a_y6a4mak02DvBsquHPcbd7ClWTm1-xr9MGSTWs7GAF32Yq6SY02m09qpdiQtxJK-DHVNxMxAY5sRMaB5LKiZrw1Rxkhw3uOLzIBD0GI3YK9eNwN_40axBcZgv0XE3f-oH2HayVAaTAEb8_dNQxiqWu-hRlh-ajZD0pNwG4swcd6BKJbT6VxovtAbABJa1L9ZZkwy8wrJXiCipNYxFdQHrA5CruJmAZTjYre50YbxqqB8MvKhH8ZTJGKPmkZGaUS2eI");'></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 overflow-hidden h-[calc(100vh-64px)]">
+<!-- LEFT PANEL: Profile List -->
+<aside class="w-[360px] flex flex-col border-r border-[#2c4823] bg-[#152211] shrink-0">
+<!-- Search & Actions -->
+<div class="p-4 border-b border-[#2c4823] space-y-4">
+<label class="flex flex-col w-full h-10">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#1f331b] border border-[#2c4823] focus-within:border-primary transition-colors">
+<div class="text-[#9fc992] flex items-center justify-center pl-3 pr-2">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 bg-transparent text-white focus:outline-none placeholder:text-[#5a7a50] text-sm" placeholder="输入姓名或身份证号搜索"/>
+</div>
+</label>
+<button class="flex w-full cursor-pointer items-center justify-center rounded-lg h-10 bg-primary hover:bg-primary-dark text-[#152211] gap-2 text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>新增老人</span>
+</button>
+</div>
+<!-- List Items -->
+<div class="flex-1 overflow-y-auto">
+<!-- Active Item -->
+<div class="flex items-center gap-3 p-4 bg-[#2c4823]/50 border-l-4 border-primary cursor-pointer hover:bg-[#2c4823] transition-colors group">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 shrink-0 border border-[#46ec13]/30" data-alt="Portrait of elderly man Zhang Wei" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAB-DQaRkgk4o1-Wu_7ySmMoAvxTawAQwspgyigzzvHB1h5chigC0sd6-05zUQLQ5nuhgzoL1HZIa7Aa9RR0ZkF-g3RhyHYO-LFumDFJ9gOWKIwkth72LIQ9ZuoIoU6MIdN10QN-_h0aplNW4BKaxLUTCdh2Kp1gSbViIdQJTzfD8_f8JQABqoSKWQ-KtN202_BfYXpcpPFbthehYAY0x5NNaiLMx53cirBdNZrWudapuqCRC7SKITOlMEwnWKbQTM4HmZXGGjEYJM");'></div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<div class="flex justify-between items-center mb-0.5">
+<p class="text-white text-base font-bold line-clamp-1 group-hover:text-primary transition-colors">张伟</p>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary text-[#152211]">重点</span>
+</div>
+<p class="text-[#9fc992] text-xs line-clamp-1">幸福社区 A座 101</p>
+</div>
+</div>
+<!-- Inactive Item -->
+<div class="flex items-center gap-3 p-4 border-l-4 border-transparent hover:bg-[#1f331b] cursor-pointer transition-colors group border-b border-[#1f331b]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 shrink-0 opacity-80" data-alt="Portrait of elderly woman Li Xiuying" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgpJkEuEx1wN3AsX_jXndlV8HgcyLqaMAezKRXmgk9M0R1tc7A7QZGPcobsBmTJlqqT8D159Vz7YUvMVvdl-kK_fPE0O5LAXB5lTpGsiCd_F1oLpl9XP2XpcQBV8gEFvagBb9ut82g7kebyoBdv7bS8p8hKKYY5yf1YuATyf83uWiwYS-UXEa-eGTjrkg4X_AE7ICJ9vBYjKC9xdNOwdOVXgMczmHuy8pbcfHftH-TvUCziKB9kJFb70fdYHkAHfC5f5H487EtHwQ");'></div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<div class="flex justify-between items-center mb-0.5">
+<p class="text-white/80 text-base font-medium line-clamp-1 group-hover:text-white transition-colors">李秀英</p>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#2c4823] text-[#9fc992]">普通</span>
+</div>
+<p class="text-[#9fc992]/70 text-xs line-clamp-1">幸福社区 B座 305</p>
+</div>
+</div>
+<!-- Inactive Item -->
+<div class="flex items-center gap-3 p-4 border-l-4 border-transparent hover:bg-[#1f331b] cursor-pointer transition-colors group border-b border-[#1f331b]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 shrink-0 opacity-80" data-alt="Portrait of elderly man Wang Dajun" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8HUt47RKROPNa6NXM900ZPAzooDpH20u5exgdv4lEERnTZkxMxSkFpsEwERHru07pDmSGUb35JUlTVFZ1v6hAT29stMiJUHGtbV7wsHYPsmlE8q-O-N0KUVBziikiV9KH_3KVneW7mg7vfY1o_qTP_p1Qs39beS5wyqBx89W9vP2mShCJqQll42dnMODGHpvrrCiS3KoWOvVi7z20AdD8ll0SrX7e-rjFWhT85MeUkLbhgfwcXSCk-IFgSbJ4nIBl0ZXCV322wOw");'></div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<div class="flex justify-between items-center mb-0.5">
+<p class="text-white/80 text-base font-medium line-clamp-1 group-hover:text-white transition-colors">王大军</p>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#2c4823] text-[#9fc992]">普通</span>
+</div>
+<p class="text-[#9fc992]/70 text-xs line-clamp-1">和平小区 5号楼 202</p>
+</div>
+</div>
+<!-- Inactive Item -->
+<div class="flex items-center gap-3 p-4 border-l-4 border-transparent hover:bg-[#1f331b] cursor-pointer transition-colors group border-b border-[#1f331b]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 shrink-0 opacity-80" data-alt="Portrait of elderly woman Chen Hong" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQUITkdW7-8uMl21d2heVKBKYkK8MFpwwUkjaMRikk3LnY-QFGn8Z2WL3rethY1u_8qmqtO5kV35l6WyKstHHOoB9GGMuefVwB4-zFNsM2Vrxqh_B2-7z9cEEQgunYYpsWW1t9QLmUCIPoUQa7c7aUNgblIFXC4MIP1u6SEoUIccH6ZxEArDN6HOt_bCCvk5qXj4r429EpXNUHKCCdfcYH6tXMOr1wLQs_Oq19_SARmSiri4eQM2PqGi9tkDLMZdqsvGo4GoUhnQk");'></div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<div class="flex justify-between items-center mb-0.5">
+<p class="text-white/80 text-base font-medium line-clamp-1 group-hover:text-white transition-colors">陈红</p>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary text-[#152211]">重点</span>
+</div>
+<p class="text-[#9fc992]/70 text-xs line-clamp-1">阳光花园 12栋 101</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- RIGHT PANEL: Profile Details -->
+<section class="flex-1 flex flex-col bg-[#111c0e] overflow-hidden relative">
+<!-- Background Texture/Gradient for depth -->
+<div class="absolute inset-0 bg-gradient-to-br from-[#1f331b]/30 to-transparent pointer-events-none"></div>
+<div class="flex-1 overflow-y-auto p-8 relative z-10">
+<div class="max-w-6xl mx-auto space-y-6">
+<!-- Basic Info Header Card -->
+<div class="bg-[#1f331b] border border-[#2c4823] rounded-xl p-6 shadow-lg shadow-black/20">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg w-32 h-32 md:w-40 md:h-40 border-2 border-[#2c4823]" data-alt="Large profile photo of Zhang Wei" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDN9wYQTYx-HzgpdQbKMqu8EBeEjZMatsy1qLfhf_PJMqVQLgek3KehwtMnb2NcBzItvKtzHsdCj_9-kbX99p5GO7fKoFVMefueH0WSfGNv8eVaoO8mJazqscmeHlHvLKWAFW3O2HOJ5AWt_Nm8kk9CkNiFsgVtIZ4xyrXiA6Skzk7zCuR1n6eUXUnTHn-ik1PNROgG2tfoiFF1_9HQjWEMtLju2i3RDJvhvO9IIBz6tAUm5frefG6Q_-O87x19egOfJHOq7Dn4FHs");'></div>
+<div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-primary text-[#152211] text-xs font-bold px-3 py-1 rounded-full shadow-md whitespace-nowrap flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                    已认证
+                                </div>
+</div>
+<div class="flex-1 flex flex-col justify-between py-1">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-baseline gap-3 mb-2">
+<h1 class="text-3xl font-bold text-white">张伟</h1>
+<span class="text-text-secondary text-lg">78岁</span>
+<span class="flex items-center gap-1 bg-[#2c4823] text-[#9fc992] px-2 py-0.5 rounded text-xs ml-2">
+<span class="material-symbols-outlined text-[14px]">male</span> 男
+                                            </span>
+</div>
+<p class="text-[#9fc992] text-sm mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">id_card</span>
+                                            身份证: 110101194501011234
+                                        </p>
+<p class="text-[#9fc992] text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                                            地址: 北京市朝阳区幸福社区 A座 101室
+                                        </p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="flex items-center gap-2 bg-[#2c4823] p-1 pr-3 rounded-lg border border-primary/30">
+<div class="size-8 rounded flex items-center justify-center bg-primary text-[#152211]">
+<span class="material-symbols-outlined">priority_high</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-[#9fc992] uppercase font-bold">状态</span>
+<span class="text-sm font-bold text-primary">重点老人</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-[#2c4823]">
+<div>
+<span class="text-xs text-[#9fc992] block mb-1">联系电话</span>
+<span class="text-white font-medium">138-0013-8000</span>
+</div>
+<div>
+<span class="text-xs text-[#9fc992] block mb-1">民族</span>
+<span class="text-white font-medium">汉族</span>
+</div>
+<div>
+<span class="text-xs text-[#9fc992] block mb-1">婚姻状况</span>
+<span class="text-white font-medium">丧偶</span>
+</div>
+<div>
+<span class="text-xs text-[#9fc992] block mb-1">建档日期</span>
+<span class="text-white font-medium">2023-05-12</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Internal Navigation -->
+<div class="border-b border-[#2c4823] mb-6">
+<nav aria-label="Tabs" class="flex gap-6 overflow-x-auto pb-1">
+<button class="flex items-center gap-2 py-3 px-1 border-b-2 border-primary text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-[20px]">description</span>
+                                详情
+                            </button>
+<a href="../老人档案页面_20/code.html" class="flex items-center gap-2 py-3 px-1 border-b-2 border-transparent text-[#9fc992] hover:text-white font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">contacts</span>
+                                联系人
+</a>
+<a href="../老人档案页面_30/code.html" class="flex items-center gap-2 py-3 px-1 border-b-2 border-transparent text-[#9fc992] hover:text-white font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">medical_services</span>
+                                健康档案
+                            </a>
+<a href="../老人档案页面_40/code.html" class="flex items-center gap-2 py-3 px-1 border-b-2 border-transparent text-[#9fc992] hover:text-white font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">home</span>
+                                生活环境
+                            </a>
+<a href="../老人档案页面_50/code.html" class="flex items-center gap-2 py-3 px-1 border-b-2 border-transparent text-[#9fc992] hover:text-white font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+                                设备信息
+                            </a>
+<a href="../老人档案页面_60/code.html" class="flex items-center gap-2 py-3 px-1 border-b-2 border-transparent text-[#9fc992] hover:text-white font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">ecg_heart</span>
+                                生命体征
+                            </a>
+<a href="../老人档案页面_70/code.html" class="flex items-center gap-2 py-3 px-1 border-b-2 border-transparent text-[#9fc992] hover:text-white font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+                                预警范围值
+                            </a>
+</nav>
+</div>
+<!-- Detail Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
+<!-- Categorization Card -->
+<div class="bg-[#1f331b] border border-[#2c4823] rounded-xl p-6">
+<h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
+<span class="w-1 h-5 bg-primary rounded-full"></span>
+                                人员标签
+                            </h3>
+<div class="space-y-4">
+<div>
+<p class="text-sm text-[#9fc992] mb-2">老人类型</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">高龄老人</span>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#2c4823] text-gray-300 border border-[#3e5e34]">低保老人</span>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">独居</span>
+</div>
+</div>
+<div>
+<p class="text-sm text-[#9fc992] mb-2">居住情况</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#2c4823] text-gray-300 border border-[#3e5e34]">与子女居住</span>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#2c4823] text-gray-300 border border-[#3e5e34]">与配偶居住</span>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30">独居</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Health Status Card -->
+<div class="bg-[#1f331b] border border-[#2c4823] rounded-xl p-6">
+<h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
+<span class="w-1 h-5 bg-primary rounded-full"></span>
+                                健康状况
+                            </h3>
+<div class="space-y-4">
+<div>
+<p class="text-sm text-[#9fc992] mb-2">慢性病史</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-500/20 text-red-400 border border-red-500/30">高血压</span>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#2c4823] text-gray-300 border border-[#3e5e34]">糖尿病</span>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-500/20 text-red-400 border border-red-500/30">心脏病</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div>
+<p class="text-sm text-[#9fc992] mb-1">血型</p>
+<p class="text-white font-medium">A型</p>
+</div>
+<div>
+<p class="text-sm text-[#9fc992] mb-1">能力等级</p>
+<p class="text-white font-medium flex items-center gap-2">
+<span class="size-2 rounded-full bg-yellow-500"></span>
+                                            轻度失能
+                                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Location & Grid Card -->
+<div class="bg-[#1f331b] border border-[#2c4823] rounded-xl p-6 md:col-span-2">
+<h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
+<span class="w-1 h-5 bg-primary rounded-full"></span>
+                                所属网格与定位
+                            </h3>
+<div class="flex flex-col md:flex-row gap-6">
+<div class="flex-1 space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-sm text-[#9fc992] mb-1">所属网格</p>
+<p class="text-white font-medium">朝阳区-幸福街道-04号网格</p>
+</div>
+<div>
+<p class="text-sm text-[#9fc992] mb-1">网格员</p>
+<p class="text-white font-medium">刘伟 (139-1234-5678)</p>
+</div>
+</div>
+<div>
+<p class="text-sm text-[#9fc992] mb-1">详细地址</p>
+<p class="text-white font-medium">北京市朝阳区幸福西里社区 10号楼 2单元 101室</p>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="text-xs bg-[#2c4823] px-2 py-1 rounded text-[#9fc992]">经度: 116.4074</span>
+<span class="text-xs bg-[#2c4823] px-2 py-1 rounded text-[#9fc992]">纬度: 39.9042</span>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-40 md:h-auto rounded-lg overflow-hidden border border-[#2c4823] relative">
+<!-- Placeholder Map -->
+<div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Map showing Beijing location" data-location="Beijing" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDxE4sWSk5fhv2eP7ZiEoihQ1O13eiJS0LLPY3RiFUt97DelrVLNBIpfrQyyb1BANDo8Nz_raN8vewwVE0ZjcTjENgVGE1HezKUotV5rTkfbW54MHne7tK7T5ycHU1qPxdRWOfv8axez2j0-fdIU9P3O4DDKCrHd2moB5kWP43SPsBcPU0e1DsI9NtuFpPdvxb53lOjZFgtbQblTQDhreI72B3kbVVeHo6RGnVNAYejeylZ5amBRe4eVQEZZgU_-xWJ-4bxEmi0ZoM"); filter: grayscale(80%) invert(90%);'></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-500 text-4xl drop-shadow-lg">location_on</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>
